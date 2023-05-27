@@ -9,6 +9,7 @@ namespace Infrastructure.Services.Interfaces
 {
     public interface IAppSettingsService
     {
-        
+        CORSSettings GetCORSSettings();
+        SQLServerSettings GetSQLServerSettings();
     }
 }
