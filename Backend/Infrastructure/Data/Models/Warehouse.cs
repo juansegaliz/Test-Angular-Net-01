@@ -11,8 +11,8 @@ namespace Infrastructure.Data.Models
         }
 
         public int WarehouseId { get; set; }
-        public string? Name { get; set; }
-        public string? Address { get; set; }
+        public string Name { get; set; } = null!;
+        public string Address { get; set; } = null!;
 
         public virtual ICollection<LandLogistic> LandLogistics { get; set; }
     }

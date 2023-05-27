@@ -34,7 +34,7 @@ namespace Infrastructure.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Warehouse>> GetAll()
+        public async Task<List<Warehouse>> GetAll()
         {
             return await _context.Warehouses.ToListAsync();
         }
@@ -42,6 +42,11 @@ namespace Infrastructure.Data.Repositories
         public async Task<Warehouse?> Get(int id)
         {
             return await _context.Warehouses.FindAsync(id);
+        }
+
+        public async Task<Warehouse?> GetByName(string name)
+        {
+            return await _context.Warehouses.FirstOrDefaultAsync(r => r.Name == name);
         }
     }
 }

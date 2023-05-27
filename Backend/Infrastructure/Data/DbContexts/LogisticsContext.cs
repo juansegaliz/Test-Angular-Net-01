@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Infrastructure.Data.Models;
-using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -41,9 +40,7 @@ namespace Infrastructure.Data.DbContexts
         {
             modelBuilder.Entity<Client>(entity =>
             {
-                entity.Property(e => e.ClientId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ClientID");
+                entity.Property(e => e.ClientId).HasColumnName("ClientID");
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(200)
@@ -63,9 +60,7 @@ namespace Infrastructure.Data.DbContexts
                 entity.HasKey(e => e.LandLogisticsId)
                     .HasName("PK__LandLogi__CE56AA775E775A34");
 
-                entity.Property(e => e.LandLogisticsId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("LandLogisticsID");
+                entity.Property(e => e.LandLogisticsId).HasColumnName("LandLogisticsID");
 
                 entity.Property(e => e.ClientId).HasColumnName("ClientID");
 
@@ -112,9 +107,7 @@ namespace Infrastructure.Data.DbContexts
                 entity.HasKey(e => e.MaritimeLogisticsId)
                     .HasName("PK__Maritime__64F86AA366E3A816");
 
-                entity.Property(e => e.MaritimeLogisticsId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("MaritimeLogisticsID");
+                entity.Property(e => e.MaritimeLogisticsId).HasColumnName("MaritimeLogisticsID");
 
                 entity.Property(e => e.ClientId).HasColumnName("ClientID");
 
@@ -158,9 +151,7 @@ namespace Infrastructure.Data.DbContexts
 
             modelBuilder.Entity<Port>(entity =>
             {
-                entity.Property(e => e.PortId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PortID");
+                entity.Property(e => e.PortId).HasColumnName("PortID");
 
                 entity.Property(e => e.City)
                     .HasMaxLength(100)
@@ -177,9 +168,7 @@ namespace Infrastructure.Data.DbContexts
 
             modelBuilder.Entity<ProductType>(entity =>
             {
-                entity.Property(e => e.ProductTypeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ProductTypeID");
+                entity.Property(e => e.ProductTypeId).HasColumnName("ProductTypeID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
@@ -188,9 +177,7 @@ namespace Infrastructure.Data.DbContexts
 
             modelBuilder.Entity<Warehouse>(entity =>
             {
-                entity.Property(e => e.WarehouseId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("WarehouseID");
+                entity.Property(e => e.WarehouseId).HasColumnName("WarehouseID");
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(200)
