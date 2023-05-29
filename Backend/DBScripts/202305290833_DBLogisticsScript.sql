@@ -1,29 +1,28 @@
-CREATE DATABASE Logistics;
 USE [Logistics]
 GO
-/****** Object:  Table [dbo].[Clients]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[Clients]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Clients](
-	[ClientID] [int] NOT NULL,
+	[ClientID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](100) NOT NULL,
 	[Address] [varchar](200) NOT NULL,
 	[Phone] [varchar](20) NOT NULL,
  CONSTRAINT [PK__Clients__E67E1A04EBD48771] PRIMARY KEY CLUSTERED 
 (
 	[ClientID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LandLogistics]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[LandLogistics]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[LandLogistics](
-	[LandLogisticsID] [int] NOT NULL,
+	[LandLogisticsID] [int] IDENTITY(1,1) NOT NULL,
 	[ProductTypeID] [int] NOT NULL,
 	[Quantity] [int] NOT NULL,
 	[RegistrationDate] [date] NOT NULL,
@@ -36,16 +35,16 @@ CREATE TABLE [dbo].[LandLogistics](
  CONSTRAINT [PK__LandLogi__CE56AA775E775A34] PRIMARY KEY CLUSTERED 
 (
 	[LandLogisticsID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MaritimeLogistics]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[MaritimeLogistics]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[MaritimeLogistics](
-	[MaritimeLogisticsID] [int] NOT NULL,
+	[MaritimeLogisticsID] [int] IDENTITY(1,1) NOT NULL,
 	[ProductTypeID] [int] NOT NULL,
 	[Quantity] [int] NOT NULL,
 	[RegistrationDate] [date] NOT NULL,
@@ -58,52 +57,52 @@ CREATE TABLE [dbo].[MaritimeLogistics](
  CONSTRAINT [PK__Maritime__64F86AA366E3A816] PRIMARY KEY CLUSTERED 
 (
 	[MaritimeLogisticsID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Ports]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[Ports]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Ports](
-	[PortID] [int] NOT NULL,
+	[PortID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](100) NOT NULL,
 	[City] [varchar](100) NOT NULL,
 	[Country] [varchar](100) NOT NULL,
  CONSTRAINT [PK__Ports__D859BFAF52B24370] PRIMARY KEY CLUSTERED 
 (
 	[PortID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProductTypes]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[ProductTypes]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ProductTypes](
-	[ProductTypeID] [int] NOT NULL,
+	[ProductTypeID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](100) NOT NULL,
  CONSTRAINT [PK__ProductT__A1312F4E1B5C689A] PRIMARY KEY CLUSTERED 
 (
 	[ProductTypeID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Warehouses]    Script Date: 5/26/2023 6:32:40 AM ******/
+/****** Object:  Table [dbo].[Warehouses]    Script Date: 5/29/2023 8:30:54 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Warehouses](
-	[WarehouseID] [int] NOT NULL,
-	[Name] [varchar](100) NULL,
-	[Address] [varchar](200) NULL,
-PRIMARY KEY CLUSTERED 
+	[WarehouseID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[Address] [varchar](200) NOT NULL,
+ CONSTRAINT [PK__Warehous__2608AFD9A592B722] PRIMARY KEY CLUSTERED 
 (
 	[WarehouseID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[LandLogistics]  WITH CHECK ADD  CONSTRAINT [FK__LandLogis__Clien__2E1BDC42] FOREIGN KEY([ClientID])
