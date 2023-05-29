@@ -48,3 +48,15 @@ PD: Por temas de tiempo no está del todo correcto implementado.
 ### Frontend
 
 - MVC, en Angular separa la aplicación en tres componentes principales: el modelo (Model), la vista (View) y el controlador (Controller) (tambien se puede llamar Component en este caso). El modelo representa los datos y la lógica de negocio, la vista es la interfaz de usuario y el controlador o componente se encarga de coordinar la interacción entre el modelo y la vista. Esta arquitectura facilita la organización del código y mejora la reutilización de componentes en la aplicación.
+
+## Diagrama Entidad Relación
+
+![Diagrama](./READMEFiles/ERD.png)
+
+## Patrones de Diseño utilizados
+
+### Backend
+- El patrón Repositorio, separa la lógica de negocio de los detalles de persistencia de datos. 
+
+### Frontend
+- El patrón Observador, se utiliza Observables para establecer comunicación entre componentes y servicios, permitiendo suscribirse a cambios en los datos y reaccionar de forma reactiva.
