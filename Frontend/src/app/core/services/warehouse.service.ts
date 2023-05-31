@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpWarehousesService } from './http/http-warehouses.service';
-import { Warehouse } from '../models/warehouses';
+import { Warehouse } from '../models/warehouse';
 import { Response } from '../models/response';
 import { lastValueFrom, Observable } from 'rxjs';
 

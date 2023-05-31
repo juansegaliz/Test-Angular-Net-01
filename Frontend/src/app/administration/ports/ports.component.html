@@ -1,0 +1,102 @@
+<fro-navbar></fro-navbar>
+
+<div class="container">
+  <h1>Puertos</h1>
+  <form [formGroup]="form" class="form-container">
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          type="text"
+          name="name"
+          maxlength="100"
+          placeholder="Nombre"
+          formControlName="name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Ciudad</mat-label>
+        <input
+          matInput
+          type="text"
+          name="city"
+          maxlength="100"
+          placeholder="Ciudad"
+          formControlName="city"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="inputs">
+          <mat-label>Pais</mat-label>
+          <input
+            matInput
+            type="text"
+            name="country"
+            maxlength="100"
+            placeholder="Pais"
+            formControlName="country"
+          />
+        </mat-form-field>
+      </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" (click)="onSave(form)">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <mat-table [dataSource]="data">
+      <!-- Columna ID -->
+      <ng-container matColumnDef="portId">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.portId }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Name -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
+      </ng-container>
+
+      <!-- Column City -->
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef>Ciudad</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.city }}</mat-cell>
+      </ng-container>
+      
+      <!-- Column Country -->
+      <ng-container matColumnDef="country">
+        <mat-header-cell *matHeaderCellDef>Pais</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.country }}</mat-cell>
+      </ng-container>
+
+      <!-- Column actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <!-- Edit and delete buttons -->
+          <button mat-icon-button (click)="onEditItem(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Columns definition -->
+      <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+    </mat-table>
+  </div>
+</div>
+

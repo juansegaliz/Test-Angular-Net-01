@@ -7,42 +7,41 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Response } from 'src/app/core/models/response';
-import { Warehouse } from 'src/app/core/models/warehouse';
+import { Port } from 'src/app/core/models/port';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { WarehouseService } from 'src/app/core/services/warehouse.service';
+import { PortService } from 'src/app/core/services/port.service';
 import { DangerDialogComponent } from 'src/app/shared/components/dialogs/danger-dialog/danger-dialog.component';
 
-
 @Component({
-  selector: 'fro-warehouses',
-  templateUrl: './warehouses.component.html',
-  styleUrls: ['./warehouses.component.scss'],
+  selector: 'fro-ports',
+  templateUrl: './ports.component.html',
+  styleUrls: ['./ports.component.scss']
 })
-export class WarehousesComponent implements OnInit {
+export class PortsComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private warehouseService: WarehouseService,
+    private portService: PortService,
     private snackbarService: SnackbarService,
     private dialog: MatDialog
   ) {
     this.form = this.getForm();
   }
 
-  data: Warehouse[] = [];
-  columnas: string[] = ['warehouseID', 'name', 'address', 'actions'];
-
+  data: Port[] = [];
+  columnas: string[] = ['portId', 'name', 'city', 'country', 'actions'];
+  
   form: FormGroup;
 
   async ngOnInit() {
     this.setDataTable();
   }
 
-  onEditItem(item: Warehouse) {
+  onEditItem(item: Port) {
     this.form.patchValue(item);
   }
 
-  delete(item: Warehouse) {
-    this.warehouseService.deleteWarehouse(item.warehouseId).subscribe(
+  delete(item: Port) {
+    this.portService.deletePort(item.portId).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -65,29 +64,30 @@ export class WarehousesComponent implements OnInit {
   }
 
   async setDataTable() {
-    this.data = (await this.warehouseService.getWarehouses()).data;
+    this.data = (await this.portService.getPorts()).data;
   }
 
   getForm(): FormGroup {
     return this.formBuilder.group({
-      warehouseId: null,
+      portId: null,
       name: ['', Validators.required],
-      address: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
     });
   }
 
   async onSave(form: FormGroup): Promise<void> {
-    const info: Warehouse = form.value;
+    const info: Port = form.value;
     //Estamos usando aqui truthy or falsy, 
     //Si Id es truthy (tiene valor distinto a null o 0), entonces actualice, sino guarde
-    if (Boolean(info.warehouseId))
+    if (Boolean(info.portId))
       await this.update(info);
     else
       await this.save(info);
   }
 
-  async save(info: Warehouse): Promise<void> {
-    this.warehouseService.addWarehouse(info.name, info.address).subscribe(
+  async save(info: Port): Promise<void> {
+    this.portService.addPort(info.name, info.city, info.country).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -110,9 +110,9 @@ export class WarehousesComponent implements OnInit {
     );
   }
 
-  async update(info: Warehouse): Promise<void> {
+  async update(info: Port): Promise<void> {
     console.log(this.update);
-    this.warehouseService.updateWarehouse(info.warehouseId, info.name, info.address).subscribe(
+    this.portService.updatePort(info.portId, info.name, info.city, info.country).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -135,11 +135,11 @@ export class WarehousesComponent implements OnInit {
     );
   }
 
-  openDialog(item: Warehouse) {
+  openDialog(item: Port) {
     const dialogRef = this.dialog.open(DangerDialogComponent, {
       data: {
-        title: 'Eliminar Almacen',
-        message: '¿Seguro quieres eliminar este almacen?'
+        title: 'Eliminar Puerto',
+        message: '¿Seguro quieres eliminar este puerto?'
       }
     });
 
@@ -150,3 +150,5 @@ export class WarehousesComponent implements OnInit {
     });
   }
 }
+
+
