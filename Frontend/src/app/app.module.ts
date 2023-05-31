@@ -14,7 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 import { SharedModule } from './shared/shared.module';
-import { AdministrationModule } from './administration/administration.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { AdministrationModule } from './administration/administration.module';
     CommonModule,
     HttpClientModule,
     SharedModule,
-    AdministrationModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,

@@ -5,14 +5,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { DangerDialogComponent } from './components/dialogs/danger-dialog/danger-dialog.component';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    DangerDialogComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +25,10 @@ import { RouterModule } from '@angular/router';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   exports: [
     NavbarComponent

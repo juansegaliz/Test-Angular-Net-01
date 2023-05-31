@@ -6,8 +6,11 @@
     <button mat-button routerLink="/home">Inicio</button>
 
     <button mat-button [matMenuTriggerFor]="menu">Administración</button>
-
     <mat-menu #menu="matMenu">        
         <button mat-menu-item routerLink="/administration/warehouses">Almacenes</button>
+        <button mat-menu-item routerLink="/administration/test">Test</button>
     </mat-menu>
+
+    
+    <button mat-button routerLink="/home">Salir</button>
 </mat-toolbar>

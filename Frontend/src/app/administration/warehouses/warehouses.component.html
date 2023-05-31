@@ -2,7 +2,7 @@
 
 <div class="container">
   <h1>Almacenes</h1>
-  <form [formGroup]="addForm" class="form-container">
+  <form [formGroup]="form" class="form-container">
     <div class="form-group">
       <mat-form-field class="inputs">
         <mat-label>Nombre</mat-label>
@@ -30,7 +30,53 @@
       </mat-form-field>
     </div>
     <div class="button-container">
-      <button mat-raised-button color="primary" type="submit" (click)="save(addForm)">Guardar</button>
+      <button mat-raised-button color="primary" type="submit" (click)="onSave(form)">Guardar</button>
     </div>
   </form>
+</div>
+
+
+
+
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <mat-table [dataSource]="data">
+      <!-- Columna ID -->
+      <ng-container matColumnDef="warehouseID">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.warehouseId }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Name -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Address -->
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.address }}</mat-cell>
+      </ng-container>
+
+      <!-- Column actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <!-- Edit and delete buttons -->
+          <button mat-icon-button (click)="onEditItem(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Columns definition -->
+      <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+    </mat-table>
+  </div>
 </div>
