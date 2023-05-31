@@ -111,7 +111,7 @@ namespace Application.Services
             {
                 productTypesReturn.Add(new ProductTypeViewModel
                 {
-                    ProductTypeID = productType.ProductTypeId,
+                    ProductTypeId = productType.ProductTypeId,
                     Name = productType.Name,
                 });
             });
@@ -140,7 +140,7 @@ namespace Application.Services
 
             ProductTypeViewModel productTypeReturn = new ProductTypeViewModel
             {
-                ProductTypeID = productType.ProductTypeId,
+                ProductTypeId = productType.ProductTypeId,
                 Name = productType.Name
             };
 

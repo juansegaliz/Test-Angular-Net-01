@@ -10,7 +10,7 @@ namespace Application.ViewModels.ProductType
     public class ProductTypeViewModel
     {
         [Required]
-        public int ProductTypeID { get; set; }
+        public int ProductTypeId { get; set; }
         [Required]
         [MaxLength(100)]
         [MinLength(5)]

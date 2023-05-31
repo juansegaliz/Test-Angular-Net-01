@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PortsComponent } from './ports/ports.component';
+import { ProductTypesComponent } from './producttypes/product-types.component';
 
 
 
@@ -22,7 +23,8 @@ import { PortsComponent } from './ports/ports.component';
 @NgModule({
   declarations: [
     WarehousesComponent,
-    PortsComponent
+    PortsComponent,
+    ProductTypesComponent
   ],
   imports: [
     CommonModule,
