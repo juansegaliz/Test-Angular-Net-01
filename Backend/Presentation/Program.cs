@@ -27,6 +27,8 @@ builder.Services.AddScoped<IPortRepository, PortRepository>();
 builder.Services.AddScoped<IPortService, PortService>();
 builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
 builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 builder.Services.AddCors(opt =>
 {
