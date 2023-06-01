@@ -31,7 +31,7 @@ Proyecto CRUD de logística marítima y terrestre, para prueba técnica.
 
 - Se ha seguido el principio OpenAPI en la construcción de los endpoints.
 
-![OpenAPI](./READMEFiles/OpenAPI.png)
+![OpenAPI](./READMEFiles/OpenAPI.jpg)
 
 ### Backend
 
@@ -55,7 +55,7 @@ PD: Por temas de tiempo no está del todo correcto implementado.
 
 - MVC, en Angular separa la aplicación en tres componentes principales: el modelo (Model), la vista (View) y el controlador (Controller) (tambien se puede llamar Component en este caso). El modelo representa los datos y la lógica de negocio, la vista es la interfaz de usuario y el controlador o componente se encarga de coordinar la interacción entre el modelo y la vista. Esta arquitectura facilita la organización del código y mejora la reutilización de componentes en la aplicación.
 
-![Model View Controller](./READMEFiles/MVC.png)
+![Model View Controller](./READMEFiles/MVC.webp)
 
 ## Diagrama Entidad Relación
 
