@@ -86,3 +86,18 @@ Se ha procurado utilizar los principios SOLID en el desarrollo del backend y fro
 - Principio de segregación de interfaces (ISP): Los clientes no deben depender de interfaces que no utilizan. Aunque no lo he implementado por tiempo, este principio se puede observar al momento de que un componente implemente el onInit en angular, u otra interface del ciclo de vida de un componente a medida que se requiera.
 
 - Principio de inversión de dependencia (DIP): Los módulos de alto nivel no deben depender de módulos de bajo nivel, ambos deben depender de abstracciones. Esto se puede evidenciar en el backend en la implementación del patron repositorio y el dbcontext, al cambiar de gestor de base de datos es posible que se genere pequeños cambios en el repositorio y en el dbcontext pero esto no afectará las clases que consuman los repositorios.
+
+## Publicación
+
+- Windows server
+- IIS
+- SQL Server Express 2019
+- SSL
+
+Puedes revisar en detalle aqui:
+
+- Frontend: https://testangularnet01.juansegaliz.com
+
+- Backend: https://testangularnet01api.juansegaliz.com
+
+- Swagger (Backend): https://testangularnet01api.juansegaliz.com/swagger/index.html
