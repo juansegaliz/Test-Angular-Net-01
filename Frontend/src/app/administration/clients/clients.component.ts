@@ -7,29 +7,29 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Response } from 'src/app/core/models/response';
-import { ProductType } from 'src/app/core/models/product-type';
+import { Client } from 'src/app/core/models/client';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { ProductTypeService } from 'src/app/core/services/product-type.service';
+import { ClientService } from 'src/app/core/services/client.service';
 import { DangerDialogComponent } from 'src/app/shared/components/dialogs/danger-dialog/danger-dialog.component';
 
 
 @Component({
-  selector: 'fro-producttypes',
-  templateUrl: './product-types.component.html',
-  styleUrls: ['./product-types.component.scss'],
+  selector: 'fro-clients',
+  templateUrl: './clients.component.html',
+  styleUrls: ['./clients.component.scss'],
 })
-export class ProductTypesComponent implements OnInit {
+export class ClientsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private productTypeService: ProductTypeService,
+    private clientService: ClientService,
     private snackbarService: SnackbarService,
     private dialog: MatDialog
   ) {
     this.form = this.getForm();
   }
 
-  data: ProductType[] = [];
-  columnas: string[] = ['productTypeId', 'name', 'actions'];
+  data: Client[] = [];
+  columnas: string[] = ['clientId', 'name', 'address', 'phone', 'actions'];
 
   form: FormGroup;
 
@@ -37,12 +37,12 @@ export class ProductTypesComponent implements OnInit {
     this.setDataTable();
   }
 
-  onEditItem(item: ProductType) {
+  onEditItem(item: Client) {
     this.form.patchValue(item);
   }
 
-  delete(item: ProductType) {
-    this.productTypeService.deleteProductType(item.productTypeId).subscribe(
+  delete(item: Client) {
+    this.clientService.deleteClient(item.clientId).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -65,28 +65,30 @@ export class ProductTypesComponent implements OnInit {
   }
 
   async setDataTable() {
-    this.data = (await this.productTypeService.getProductTypes()).data;
+    this.data = (await this.clientService.getClients()).data;
   }
 
   getForm(): FormGroup {
     return this.formBuilder.group({
-      productTypeId: null,
-      name: ['', Validators.required]
+      clientId: null,
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
     });
   }
 
   async onSave(form: FormGroup): Promise<void> {
-    const info: ProductType = form.value;
+    const info: Client = form.value;
     //Estamos usando aqui truthy or falsy, 
     //Si Id es truthy (tiene valor distinto a null o 0), entonces actualice, sino guarde
-    if (Boolean(info.productTypeId))
+    if (Boolean(info.clientId))
       await this.update(info);
     else
       await this.save(info);
   }
 
-  async save(info: ProductType): Promise<void> {
-    this.productTypeService.addProductType(info.name).subscribe(
+  async save(info: Client): Promise<void> {
+    this.clientService.addClient(info.name, info.address, info.phone).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -109,8 +111,8 @@ export class ProductTypesComponent implements OnInit {
     );
   }
 
-  async update(info: ProductType): Promise<void> {
-    this.productTypeService.updateProductType(info.productTypeId, info.name).subscribe(
+  async update(info: Client): Promise<void> {
+    this.clientService.updateClient(info.clientId, info.name, info.address, info.phone).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -133,11 +135,11 @@ export class ProductTypesComponent implements OnInit {
     );
   }
 
-  openDialog(item: ProductType) {
+  openDialog(item: Client) {
     const dialogRef = this.dialog.open(DangerDialogComponent, {
       data: {
-        title: 'Eliminar Tipo de producto',
-        message: '¿Seguro quieres eliminar este tipo de producto?'
+        title: 'Eliminar Cliente',
+        message: '¿Seguro quieres eliminar este cliente?'
       }
     });
 

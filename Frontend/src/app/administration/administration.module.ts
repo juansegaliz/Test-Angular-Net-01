@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PortsComponent } from './ports/ports.component';
 import { ProductTypesComponent } from './producttypes/product-types.component';
+import { ClientsComponent } from './clients/clients.component';
 
 
 
@@ -24,7 +25,8 @@ import { ProductTypesComponent } from './producttypes/product-types.component';
   declarations: [
     WarehousesComponent,
     PortsComponent,
-    ProductTypesComponent
+    ProductTypesComponent,
+    ClientsComponent
   ],
   imports: [
     CommonModule,

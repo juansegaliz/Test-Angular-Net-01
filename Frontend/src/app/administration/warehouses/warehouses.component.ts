@@ -111,7 +111,6 @@ export class WarehousesComponent implements OnInit {
   }
 
   async update(info: Warehouse): Promise<void> {
-    console.log(this.update);
     this.warehouseService.updateWarehouse(info.warehouseId, info.name, info.address).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)

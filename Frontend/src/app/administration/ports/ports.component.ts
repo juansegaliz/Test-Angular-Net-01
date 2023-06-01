@@ -111,7 +111,6 @@ export class PortsComponent {
   }
 
   async update(info: Port): Promise<void> {
-    console.log(this.update);
     this.portService.updatePort(info.portId, info.name, info.city, info.country).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)

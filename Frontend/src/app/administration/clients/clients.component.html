@@ -1,0 +1,100 @@
+<fro-navbar></fro-navbar>
+
+<div class="container">
+  <h1>Clientes</h1>
+  <form [formGroup]="form" class="form-container">
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          type="text"
+          name="name"
+          maxlength="100"
+          placeholder="Nombre"
+          formControlName="name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Dirección</mat-label>
+        <input
+          matInput
+          type="text"
+          name="address"
+          maxlength="200"
+          placeholder="Dirección"
+          formControlName="address"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          type="tel"
+          name="phone"
+          placeholder="Teléfono"
+          formControlName="phone"
+        />
+      </mat-form-field>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" (click)="onSave(form)">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <mat-table [dataSource]="data">
+      <!-- Columna ID -->
+      <ng-container matColumnDef="clientId">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.clientId }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Name -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Address -->
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.address }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Phone -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.phone }}</mat-cell>
+      </ng-container>
+
+      <!-- Column actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <!-- Edit and delete buttons -->
+          <button mat-icon-button (click)="onEditItem(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Columns definition -->
+      <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+    </mat-table>
+  </div>
+</div>
