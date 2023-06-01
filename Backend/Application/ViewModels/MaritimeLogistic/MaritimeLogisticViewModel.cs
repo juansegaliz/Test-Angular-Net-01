@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.ViewModels.LandLogistic
+namespace Application.ViewModels.MaritimeLogistic
 {
-    public class LandLogisticViewModel
+    public class MaritimeLogisticViewModel
     {
         [Required]
-        public int LandLogisticsId { get; set; }
+        public int MaritimeLogisticsId { get; set; }
         [Required]
         public int ProductTypeId { get; set; }
         [Required]
@@ -21,16 +21,16 @@ namespace Application.ViewModels.LandLogistic
         [Required]
         public DateTime DeliveryDate { get; set; }
         [Required]
-        public int WarehouseId { get; set; }
+        public int PortId { get; set; }
         [Required]
         public decimal ShippingPrice { get; set; }
         public decimal Discount { get; set; }
         public decimal TotalPrice { get; set; }
         [Required]
-        [MaxLength(6)]
-        [MinLength(6)]
-        [VehiclePlate]
-        public string VehiclePlate { get; set; } = null!;
+        [MaxLength(8)]
+        [MinLength(8)]
+        [FleetNumber]
+        public string FleetNumber { get; set; } = null!;
         [Required]
         [MaxLength(10)]
         [MinLength(10)]

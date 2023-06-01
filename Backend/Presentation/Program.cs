@@ -31,6 +31,8 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ILandLogisticRepository, LandLogisticRepository>();
 builder.Services.AddScoped<ILandLogisticService, LandLogisticService>();
+builder.Services.AddScoped<IMaritimeLogisticRepository, MaritimeLogisticRepository>();
+builder.Services.AddScoped<IMaritimeLogisticService, MaritimeLogisticService>();
 
 builder.Services.AddCors(opt =>
 {

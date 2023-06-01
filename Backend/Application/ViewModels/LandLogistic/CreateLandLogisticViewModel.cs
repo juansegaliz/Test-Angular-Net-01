@@ -30,6 +30,8 @@ namespace Application.ViewModels.LandLogistic
         [VehiclePlate]
         public string VehiclePlate { get; set; } = null!;
         [Required]
+        [MaxLength(10)]
+        [MinLength(10)]
         public string GuideNumber { get; set; } = null!;
         [Required]
         public int ClientId { get; set; }
