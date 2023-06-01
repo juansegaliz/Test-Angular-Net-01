@@ -1,6 +1,6 @@
 USE [Logistics]
 GO
-/****** Object:  Table [dbo].[Clients]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[Clients]    Script Date: 01/06/2023 6:07:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Clients](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LandLogistics]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[LandLogistics]    Script Date: 01/06/2023 6:07:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -29,6 +29,8 @@ CREATE TABLE [dbo].[LandLogistics](
 	[DeliveryDate] [date] NOT NULL,
 	[WarehouseID] [int] NOT NULL,
 	[ShippingPrice] [decimal](10, 2) NOT NULL,
+	[Discount] [decimal](10, 2) NOT NULL,
+	[TotalPrice] [decimal](10, 2) NOT NULL,
 	[VehiclePlate] [char](6) NOT NULL,
 	[GuideNumber] [varchar](10) NOT NULL,
 	[ClientID] [int] NOT NULL,
@@ -38,7 +40,23 @@ CREATE TABLE [dbo].[LandLogistics](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MaritimeLogistics]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[Login]    Script Date: 01/06/2023 6:07:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Login](
+	[LoginID] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [varchar](100) NOT NULL,
+	[PasswordHash] [varbinary](max) NOT NULL,
+	[Salt] [varbinary](16) NOT NULL,
+ CONSTRAINT [PK_Login] PRIMARY KEY CLUSTERED 
+(
+	[LoginID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MaritimeLogistics]    Script Date: 01/06/2023 6:07:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -51,6 +69,8 @@ CREATE TABLE [dbo].[MaritimeLogistics](
 	[DeliveryDate] [date] NOT NULL,
 	[PortID] [int] NOT NULL,
 	[ShippingPrice] [decimal](10, 2) NOT NULL,
+	[Discount] [decimal](10, 2) NOT NULL,
+	[TotalPrice] [decimal](10, 2) NOT NULL,
 	[FleetNumber] [char](8) NOT NULL,
 	[GuideNumber] [varchar](10) NOT NULL,
 	[ClientID] [int] NOT NULL,
@@ -60,7 +80,7 @@ CREATE TABLE [dbo].[MaritimeLogistics](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Ports]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[Ports]    Script Date: 01/06/2023 6:07:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -76,7 +96,7 @@ CREATE TABLE [dbo].[Ports](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProductTypes]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[ProductTypes]    Script Date: 01/06/2023 6:07:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,7 +110,7 @@ CREATE TABLE [dbo].[ProductTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Warehouses]    Script Date: 5/29/2023 8:30:54 AM ******/
+/****** Object:  Table [dbo].[Warehouses]    Script Date: 01/06/2023 6:07:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
