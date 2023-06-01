@@ -21,6 +21,7 @@ import { PortsComponent } from './ports/ports.component';
 import { ProductTypesComponent } from './producttypes/product-types.component';
 import { ClientsComponent } from './clients/clients.component';
 import { LandLogisticsComponent } from './landlogistics/land-logistics.component';
+import { MaritimeLogisticsComponent } from './maritimelogistics/maritime-logistics.component';
 
 
 
@@ -31,7 +32,8 @@ import { LandLogisticsComponent } from './landlogistics/land-logistics.component
     PortsComponent,
     ProductTypesComponent,
     ClientsComponent,
-    LandLogisticsComponent
+    LandLogisticsComponent,
+    MaritimeLogisticsComponent
   ],
   imports: [
     CommonModule,

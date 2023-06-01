@@ -7,28 +7,28 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Response } from 'src/app/core/models/response';
-import { LandLogistic } from 'src/app/core/models/land-logistic';
+import { MaritimeLogistic } from 'src/app/core/models/maritime-logistic';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { LandLogisticService } from 'src/app/core/services/land-logistic.service';
+import { MaritimeLogisticService } from 'src/app/core/services/maritime-logistic.service';
 import { DangerDialogComponent } from 'src/app/shared/components/dialogs/danger-dialog/danger-dialog.component';
 import { ProductTypeService } from 'src/app/core/services/product-type.service';
-import { WarehouseService } from 'src/app/core/services/warehouse.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { Select } from 'src/app/core/models/select';
+import { PortService } from 'src/app/core/services/port.service';
 
 @Component({
-  selector: 'fro-land-logistics',
-  templateUrl: './land-logistics.component.html',
-  styleUrls: ['./land-logistics.component.scss'],
+  selector: 'fro-maritime-logistics',
+  templateUrl: './maritime-logistics.component.html',
+  styleUrls: ['./maritime-logistics.component.scss'],
 })
-export class LandLogisticsComponent implements OnInit {
+export class MaritimeLogisticsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private landLogisticService: LandLogisticService,
+    private maritimeLogisticService: MaritimeLogisticService,
     private snackbarService: SnackbarService,
     private dialog: MatDialog,
     private productTypeService: ProductTypeService,
-    private warehouseService: WarehouseService,
+    private portService: PortService,
     private clientService: ClientService
   ) {
     this.setForm();
@@ -37,21 +37,21 @@ export class LandLogisticsComponent implements OnInit {
   }
 
   selectProductTypeData: Select[] = [];
-  selectWarehouseData: Select[] = [];
+  selectPortData: Select[] = [];
   selectClientData: Select[] = [];
 
-  data: LandLogistic[] = [];
+  data: MaritimeLogistic[] = [];
   columnas: string[] = [
-    'landLogisticsId',
+    'maritimeLogisticsId',
     'productTypeId',
     'quantity',
     'registrationDate',
     'deliveryDate',
-    'warehouseId',
+    'portId',
     'shippingPrice',
     'discount',
     'totalPrice',
-    'vehiclePlate',
+    'fleetNumber',
     'guideNumber',
     'clientId',
     'actions',
@@ -82,16 +82,16 @@ export class LandLogisticsComponent implements OnInit {
   async setSelectsData(): Promise<void> {
     this.selectProductTypeData =
       await this.productTypeService.getDataForSelect();
-    this.selectWarehouseData = await this.warehouseService.getDataForSelect();
+    this.selectPortData = await this.portService.getDataForSelect();
     this.selectClientData = await this.clientService.getDataForSelect();
   }
 
-  onEditItem(item: LandLogistic) {
+  onEditItem(item: MaritimeLogistic) {
     this.form.patchValue(item);
   }
 
-  delete(item: LandLogistic) {
-    this.landLogisticService.deleteLandLogistic(item.landLogisticsId).subscribe(
+  delete(item: MaritimeLogistic) {
+    this.maritimeLogisticService.deleteMaritimeLogistic(item.maritimeLogisticsId).subscribe(
       (responseSuccess: Response<boolean>) => {
         const message = Object.entries(responseSuccess.messages)
           .map(([key, value]) => `${value}`)
@@ -114,45 +114,45 @@ export class LandLogisticsComponent implements OnInit {
   }
 
   async setDataTable() {
-    this.data = (await this.landLogisticService.getLandLogistics()).data;
+    this.data = (await this.maritimeLogisticService.getMaritimeLogistics()).data;
   }
 
   getForm(): FormGroup {
     return this.formBuilder.group({
-      landLogisticsId: null,
+      maritimeLogisticsId: null,
       productTypeId: [null, Validators.required],
       quantity: ['', Validators.required],
       registrationDate: ['', Validators.required],
       deliveryDate: ['', Validators.required],
-      warehouseId: [null, Validators.required],
+      portId: [null, Validators.required],
       shippingPrice: ['', Validators.required],
       discount: [{ value: '', disabled: true }, Validators.required],
       totalPrice: [{ value: '', disabled: true }, Validators.required],
-      vehiclePlate: ['', Validators.required],
+      fleetNumber: ['', Validators.required],
       guideNumber: ['', Validators.required],
       clientId: [null, Validators.required],
     });
   }
 
   async onSave(form: FormGroup): Promise<void> {
-    const info: LandLogistic = form.value;
+    const info: MaritimeLogistic = form.value;
     //Estamos usando aqui truthy or falsy,
-    //Si Id es truthy (tiene valor distinto a null o 0), entonces actualice, sino guarde    
-    if (Boolean(info.landLogisticsId)) await this.update(info);
+    //Si Id es truthy (tiene valor distinto a null o 0), entonces actualice, sino guarde
+    if (Boolean(info.maritimeLogisticsId)) await this.update(info);
     else await this.save(info);
     
   }
 
-  async save(info: LandLogistic): Promise<void> {
-    this.landLogisticService
-      .addLandLogistic(
+  async save(info: MaritimeLogistic): Promise<void> {
+    this.maritimeLogisticService
+      .addMaritimeLogistic(
         info.productTypeId,
         info.quantity,
         info.registrationDate,
         info.deliveryDate,
-        info.warehouseId,
+        info.portId,
         info.shippingPrice,
-        info.vehiclePlate,
+        info.fleetNumber,
         info.guideNumber,
         info.clientId
       )
@@ -180,17 +180,17 @@ export class LandLogisticsComponent implements OnInit {
       );
   }
 
-  async update(info: LandLogistic): Promise<void> {
-    this.landLogisticService
-      .updateLandLogistic(
-        info.landLogisticsId,
+  async update(info: MaritimeLogistic): Promise<void> {
+    this.maritimeLogisticService
+      .updateMaritimeLogistic(
+        info.maritimeLogisticsId,
         info.productTypeId,
         info.quantity,
         info.registrationDate,
         info.deliveryDate,
-        info.warehouseId,
+        info.portId,
         info.shippingPrice,
-        info.vehiclePlate,
+        info.fleetNumber,
         info.guideNumber,
         info.clientId
       )
@@ -218,11 +218,11 @@ export class LandLogisticsComponent implements OnInit {
       );
   }
 
-  openDialog(item: LandLogistic) {
+  openDialog(item: MaritimeLogistic) {
     const dialogRef = this.dialog.open(DangerDialogComponent, {
       data: {
-        title: 'Eliminar Logistica terrestre',
-        message: '¿Seguro quieres eliminar esta logistica terrestre?',
+        title: 'Eliminar Logistica maritima',
+        message: '¿Seguro quieres eliminar esta logistica maritima?',
       },
     });
 
@@ -236,7 +236,7 @@ export class LandLogisticsComponent implements OnInit {
   calculateDiscount(): number {
     const quantity = this.form.get('quantity')!.value;
     const shippingPrice = this.form.get('shippingPrice')!.value;
-    const discount = (quantity > 10) ? shippingPrice * 0.05 : 0;
+    const discount = (quantity > 10) ? shippingPrice * 0.03 : 0;
 
     return discount;
   }

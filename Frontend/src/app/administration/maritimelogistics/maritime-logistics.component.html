@@ -1,7 +1,7 @@
 <fro-navbar></fro-navbar>
 
 <div class="container">
-  <h1>Logistica terrestre</h1>
+  <h1>Logistica maritima</h1>
   <form [formGroup]="form" class="form-container">
     <div class="form-group">
       <mat-form-field class="inputs">
@@ -42,9 +42,9 @@
     </div>
     <div class="form-group">
       <mat-form-field class="inputs">
-        <mat-label>Almacen</mat-label>
-        <mat-select formControlName="warehouseId">
-          <mat-option *ngFor="let option of selectWarehouseData" [value]="option.value">{{ option.text }}</mat-option>
+        <mat-label>Puerto</mat-label>
+        <mat-select formControlName="portId">
+          <mat-option *ngFor="let option of selectPortData" [value]="option.value">{{ option.text }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -89,14 +89,14 @@
     </div>
     <div class="form-group">
       <mat-form-field class="inputs">
-        <mat-label>Placa del vehículo</mat-label>
+        <mat-label>Número de flota</mat-label>
         <input
           matInput
           type="text"
-          name="vehiclePlate"
-          maxlength="6"
-          placeholder="Placa del vehículo"
-          formControlName="vehiclePlate"
+          name="fleetNumber"
+          maxlength="8"
+          placeholder="Número de flota"
+          formControlName="fleetNumber"
         />
       </mat-form-field>
     </div>
@@ -135,9 +135,9 @@
   <div class="table-wrapper">
     <mat-table [dataSource]="data">
       <!-- Columna ID -->
-      <ng-container matColumnDef="landLogisticsId">
+      <ng-container matColumnDef="maritimeLogisticsId">
         <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let item">{{ item.landLogisticsId }}</mat-cell>
+        <mat-cell *matCellDef="let item">{{ item.maritimeLogisticsId }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="productTypeId">
@@ -160,9 +160,9 @@
         <mat-cell *matCellDef="let item">{{ item.deliveryDate }}</mat-cell>
       </ng-container>
       
-      <ng-container matColumnDef="warehouseId">
-        <mat-header-cell *matHeaderCellDef>Almacen</mat-header-cell>
-        <mat-cell *matCellDef="let item">{{ displayText(item.warehouseId, selectWarehouseData) }}</mat-cell>
+      <ng-container matColumnDef="portId">
+        <mat-header-cell *matHeaderCellDef>Puerto</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ displayText(item.portId, selectPortData) }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="shippingPrice">
@@ -180,9 +180,9 @@
         <mat-cell *matCellDef="let item">{{ item.totalPrice }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="vehiclePlate">
-        <mat-header-cell *matHeaderCellDef>Placa del vehiculo</mat-header-cell>
-        <mat-cell *matCellDef="let item">{{ item.vehiclePlate }}</mat-cell>
+      <ng-container matColumnDef="fleetNumber">
+        <mat-header-cell *matHeaderCellDef>Número de flota</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.fleetNumber }}</mat-cell>
       </ng-container>
       
       <ng-container matColumnDef="guideNumber">
