@@ -4,6 +4,7 @@ import { WarehousesComponent } from './warehouses/warehouses.component';
 import { PortsComponent } from './ports/ports.component';
 import { ProductTypesComponent } from './producttypes/product-types.component';
 import { ClientsComponent } from './clients/clients.component';
+import { LandLogisticsComponent } from './landlogistics/land-logistics.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'clients',
     component: ClientsComponent
+  },
+  {
+    path: 'landlogistics',
+    component: LandLogisticsComponent
   }
 ];
 

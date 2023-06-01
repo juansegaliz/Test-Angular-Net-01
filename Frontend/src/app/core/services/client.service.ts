@@ -3,6 +3,7 @@ import { HttpClientsService } from './http/http-clients.service';
 import { Client } from '../models/client';
 import { Response } from '../models/response';
 import { lastValueFrom, Observable } from 'rxjs';
+import { Select } from '../models/select';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,13 @@ export class ClientService {
   async getClients(): Promise<Response<Client[]>> {
     const response = await lastValueFrom(this.httpClientsService.getAll());
     return response;
+  }
+  
+  async getDataForSelect(): Promise<Select[]> {
+    const response = await lastValueFrom(this.httpClientsService.getAll());
+    return response.data.map(item => ({
+      value: item.clientId,
+      text: item.name
+    }));
   }
 }

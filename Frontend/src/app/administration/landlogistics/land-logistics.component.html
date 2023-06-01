@@ -1,0 +1,217 @@
+<fro-navbar></fro-navbar>
+
+<div class="container">
+  <h1>Logistica terrestre</h1>
+  <form [formGroup]="form" class="form-container">
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Tipo de Producto</mat-label>
+        <mat-select formControlName="productTypeId">
+          <mat-option *ngFor="let option of selectProductTypeData" [value]="option.value">{{ option.text }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Cantidad</mat-label>
+        <input
+          matInput
+          type="text"
+          name="quantity"
+          maxlength="10"
+          placeholder="Cantidad"
+          formControlName="quantity"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Fecha de registro</mat-label>
+        <input matInput [matDatepicker]="registrationDate" placeholder="Fecha de registro" formControlName="registrationDate">
+        <mat-datepicker-toggle matSuffix [for]="registrationDate"></mat-datepicker-toggle>
+        <mat-datepicker #registrationDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Fecha de entrega</mat-label>
+        <input matInput [matDatepicker]="deliveryDate" placeholder="Fecha de entrega" formControlName="deliveryDate">
+        <mat-datepicker-toggle matSuffix [for]="deliveryDate"></mat-datepicker-toggle>
+        <mat-datepicker #deliveryDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Almacen</mat-label>
+        <mat-select formControlName="warehouseId">
+          <mat-option *ngFor="let option of selectWarehouseData" [value]="option.value">{{ option.text }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Precio de envio</mat-label>
+        <input
+          matInput
+          type="text"
+          name="shippingPrice"
+          maxlength="20"
+          placeholder="Precio de envio"
+          formControlName="shippingPrice"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Descuento</mat-label>
+        <input
+          matInput
+          type="text"
+          name="discount"
+          maxlength="20"
+          placeholder="Descuento"
+          formControlName="discount"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Total</mat-label>
+        <input
+          matInput
+          type="text"
+          name="totalPrice"
+          maxlength="20"
+          placeholder="Total"
+          formControlName="totalPrice"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Placa del vehículo</mat-label>
+        <input
+          matInput
+          type="text"
+          name="vehiclePlate"
+          maxlength="6"
+          placeholder="Total"
+          formControlName="vehiclePlate"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Numero de guía</mat-label>
+        <input
+          matInput
+          type="text"
+          name="guideNumber"
+          maxlength="10"
+          placeholder="Número de guía"
+          formControlName="guideNumber"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="inputs">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="clientId">
+          <mat-option *ngFor="let option of selectClientData" [value]="option.value">{{ option.text }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>    
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" (click)="onSave(form)">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <mat-table [dataSource]="data">
+      <!-- Columna ID -->
+      <ng-container matColumnDef="landLogisticsId">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.landLogisticsId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="productTypeId">
+        <mat-header-cell *matHeaderCellDef>Tipo de producto</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ displayText(item.productTypeId, selectProductTypeData) }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.quantity }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="registrationDate">
+        <mat-header-cell *matHeaderCellDef>Fecha de Registro</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.registrationDate }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="deliveryDate">
+        <mat-header-cell *matHeaderCellDef>Fecha de Entrega</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.deliveryDate }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="warehouseId">
+        <mat-header-cell *matHeaderCellDef>Almacen</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ displayText(item.warehouseId, selectWarehouseData) }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="shippingPrice">
+        <mat-header-cell *matHeaderCellDef>Precio de envio</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.shippingPrice }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="discount">
+        <mat-header-cell *matHeaderCellDef>Descuento</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.discount }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="totalPrice">
+        <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.totalPrice }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="vehiclePlate">
+        <mat-header-cell *matHeaderCellDef>Placa del vehiculo</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.vehiclePlate }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="guideNumber">
+        <mat-header-cell *matHeaderCellDef>Número de guía</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.guideNumber }}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="clientId">
+        <mat-header-cell *matHeaderCellDef>Cliente</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ displayText(item.clientId, selectClientData) }}</mat-cell>
+      </ng-container>
+      
+      <!-- Column actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <!-- Edit and delete buttons -->
+          <button mat-icon-button (click)="onEditItem(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Columns definition -->
+      <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+    </mat-table>
+  </div>
+</div>

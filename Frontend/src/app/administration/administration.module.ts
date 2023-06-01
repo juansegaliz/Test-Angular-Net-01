@@ -14,9 +14,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { PortsComponent } from './ports/ports.component';
 import { ProductTypesComponent } from './producttypes/product-types.component';
 import { ClientsComponent } from './clients/clients.component';
+import { LandLogisticsComponent } from './landlogistics/land-logistics.component';
 
 
 
@@ -26,7 +30,8 @@ import { ClientsComponent } from './clients/clients.component';
     WarehousesComponent,
     PortsComponent,
     ProductTypesComponent,
-    ClientsComponent
+    ClientsComponent,
+    LandLogisticsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,10 @@ import { ClientsComponent } from './clients/clients.component';
     MatSnackBarModule,
     MatIconModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AdministrationModule { }

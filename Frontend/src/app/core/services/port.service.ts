@@ -3,6 +3,7 @@ import { HttpPortsService } from './http/http-ports.service';
 import { Port } from '../models/port';
 import { Response } from '../models/response';
 import { lastValueFrom, Observable } from 'rxjs';
+import { Select } from '../models/select';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,13 @@ export class PortService {
   async getPorts(): Promise<Response<Port[]>> {
     const response = await lastValueFrom(this.httpPortsService.getAll());
     return response;
+  }
+  
+  async getDataForSelect(): Promise<Select[]> {
+    const response = await lastValueFrom(this.httpPortsService.getAll());
+    return response.data.map(item => ({
+      value: item.portId,
+      text: item.name
+    }));
   }
 }

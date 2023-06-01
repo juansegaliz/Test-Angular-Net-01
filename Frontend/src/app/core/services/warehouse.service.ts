@@ -3,6 +3,7 @@ import { HttpWarehousesService } from './http/http-warehouses.service';
 import { Warehouse } from '../models/warehouse';
 import { Response } from '../models/response';
 import { lastValueFrom, Observable } from 'rxjs';
+import { Select } from '../models/select';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,13 @@ export class WarehouseService {
   async getWarehouses(): Promise<Response<Warehouse[]>> {
     const response = await lastValueFrom(this.httpWarehousesService.getAll());
     return response;
+  }
+
+  async getDataForSelect(): Promise<Select[]> {
+    const response = await lastValueFrom(this.httpWarehousesService.getAll());
+    return response.data.map(item => ({
+      value: item.warehouseId,
+      text: item.name
+    }));
   }
 }
