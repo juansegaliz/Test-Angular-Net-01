@@ -29,6 +29,8 @@ builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
 builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<ILandLogisticRepository, LandLogisticRepository>();
+builder.Services.AddScoped<ILandLogisticService, LandLogisticService>();
 
 builder.Services.AddCors(opt =>
 {
