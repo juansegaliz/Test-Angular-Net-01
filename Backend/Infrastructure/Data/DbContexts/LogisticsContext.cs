@@ -23,6 +23,7 @@ namespace Infrastructure.Data.DbContexts
 
         public virtual DbSet<Client> Clients { get; set; } = null!;
         public virtual DbSet<LandLogistic> LandLogistics { get; set; } = null!;
+        public virtual DbSet<Login> Logins { get; set; } = null!;
         public virtual DbSet<MaritimeLogistic> MaritimeLogistics { get; set; } = null!;
         public virtual DbSet<Port> Ports { get; set; } = null!;
         public virtual DbSet<ProductType> ProductTypes { get; set; } = null!;
@@ -66,6 +67,8 @@ namespace Infrastructure.Data.DbContexts
 
                 entity.Property(e => e.DeliveryDate).HasColumnType("date");
 
+                entity.Property(e => e.Discount).HasColumnType("decimal(10, 2)");
+
                 entity.Property(e => e.GuideNumber)
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -75,6 +78,8 @@ namespace Infrastructure.Data.DbContexts
                 entity.Property(e => e.RegistrationDate).HasColumnType("date");
 
                 entity.Property(e => e.ShippingPrice).HasColumnType("decimal(10, 2)");
+
+                entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.VehiclePlate)
                     .HasMaxLength(6)
@@ -102,6 +107,19 @@ namespace Infrastructure.Data.DbContexts
                     .HasConstraintName("FK__LandLogis__Wareh__2D27B809");
             });
 
+            modelBuilder.Entity<Login>(entity =>
+            {
+                entity.ToTable("Login");
+
+                entity.Property(e => e.LoginId).HasColumnName("LoginID");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Salt).HasMaxLength(16);
+            });
+
             modelBuilder.Entity<MaritimeLogistic>(entity =>
             {
                 entity.HasKey(e => e.MaritimeLogisticsId)
@@ -112,6 +130,8 @@ namespace Infrastructure.Data.DbContexts
                 entity.Property(e => e.ClientId).HasColumnName("ClientID");
 
                 entity.Property(e => e.DeliveryDate).HasColumnType("date");
+
+                entity.Property(e => e.Discount).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.FleetNumber)
                     .HasMaxLength(8)
@@ -129,6 +149,8 @@ namespace Infrastructure.Data.DbContexts
                 entity.Property(e => e.RegistrationDate).HasColumnType("date");
 
                 entity.Property(e => e.ShippingPrice).HasColumnType("decimal(10, 2)");
+
+                entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
 
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.MaritimeLogistics)

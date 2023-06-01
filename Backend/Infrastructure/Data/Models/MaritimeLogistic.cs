@@ -12,6 +12,8 @@ namespace Infrastructure.Data.Models
         public DateTime DeliveryDate { get; set; }
         public int PortId { get; set; }
         public decimal ShippingPrice { get; set; }
+        public decimal Discount { get; set; }
+        public decimal TotalPrice { get; set; }
         public string FleetNumber { get; set; } = null!;
         public string GuideNumber { get; set; } = null!;
         public int ClientId { get; set; }
