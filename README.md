@@ -29,7 +29,7 @@ Proyecto CRUD de logística marítima y terrestre, para prueba técnica.
 
 - REST, Es un enfoque para diseñar servicios web y sistemas distribuidos. Se basa en la comunicación cliente-servidor utilizando el protocolo HTTP. Utiliza operaciones CRUD y se enfoca en la simplicidad, escalabilidad y la interoperabilidad a través de estándares web.
 
-- Se ha seguido el principio OpenAPI en la construcción de los endpoints.
+- Se ha seguido el principio OpenAPI en la construcción de los endpoints. La siguiente imagen es un ejemplo del seguimiento de este principio:
 
 ![OpenAPI](./READMEFiles/OpenAPI.jpg)
 
